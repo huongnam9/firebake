@@ -130,14 +130,26 @@ const SignInWithGoogle: React.FC = () => {
 
       console.log("Sending OTP to:", phoneNumber);
       const verified = window.recaptchaVerifier;
+      // Check if verified is defined
+      if (!verified) {
+        throw new Error("Recaptcha verifier is not initialized.");
+      }
+
       console.log("verified", verified)
       const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, verified);
       console.log("OTP sent successfully:", confirmationResult);
       setVerificationId(confirmationResult);
       setMessage("OTP sent successfully!");
-    } catch (error: any) {
-      console.error("Error during OTP send:", error);
-      setMessage(`Error during OTP send: ${error.message}`);
+    } catch (error: unknown) {
+      // Check if error is an instance of Error
+      if (error instanceof Error) {
+        console.error("Error during OTP send:", error);
+        setMessage(`Error during OTP send: ${error.message}`);
+      } else {
+        // Handle unexpected error types
+        console.error("Unexpected error during OTP send:", error);
+        setMessage("Unexpected error occurred while sending OTP.");
+      }
     }
   };
 
