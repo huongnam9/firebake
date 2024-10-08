@@ -71,12 +71,18 @@ const SignInWithGoogle: React.FC = () => {
       });
     }
   };
-
+  const handleKakaoLogin = () => {
+    // Perform Kakao login
+    window.Kakao.Auth.authorize({
+      redirectUri: 'http://localhost:5173/oauth/callback',  // Replace with your app's redirect URI
+    });
+  };
   // Function to set up reCAPTCHA verifier
   useEffect(() => {
     addRecaptchaScript();
     setupRecaptcha();
   }, []);
+
   const addRecaptchaScript = () => {
     const existingScript = document.getElementById('recaptcha-script');
     if (!existingScript) {
@@ -177,6 +183,8 @@ const SignInWithGoogle: React.FC = () => {
       <div>
         <button onClick={signInWithGoogle}>Sign In with Google</button>
         <button onClick={signInWithApple}>Sign In with Apple</button>
+        <button onClick={handleKakaoLogin}>Sign In with kakao talk</button>
+
         <div>
           <h2>Firebase SMS Verification</h2>
           <form onSubmit={sendOTP}>
@@ -199,7 +207,8 @@ const SignInWithGoogle: React.FC = () => {
             <button type="submit">Verify OTP</button>
           </form>
 
-          <div id="recaptcha-container"></div> {/* This is required for reCAPTCHA */}
+          <div id="recaptcha-container"></div>
+          {/* This is required for reCAPTCHA */}
           <p>{message}</p>
         </div>
       </div>
