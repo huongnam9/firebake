@@ -10,6 +10,14 @@ declare global {
     }
 }
 
+function TestPage() {
+    return (
+        <div>
+            <h1>Hello World</h1>
+            <p>This is a simple test page.</p>
+        </div>
+    );
+}
 function App() {
     useEffect(() => {
         if (window.Kakao && !window.Kakao.isInitialized()) {
@@ -22,6 +30,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/oauth/callback" element={<OAuthCallback />} />
+                <Route path="/test" element={<TestPage/>} />
                 <Route path="/" element={<SignInWithGoogle />} />
             </Routes>
         </Router>
