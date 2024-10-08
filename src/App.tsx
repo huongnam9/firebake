@@ -1,6 +1,6 @@
 // src/App.tsx
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Use Routes in React Router v6
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import OAuthCallback from './OAuthCallback';
 import SignInWithGoogle from './SignInGoogle';
 
@@ -20,7 +20,7 @@ function App() {
 
     return (
         <Router>
-            <Routes> {/* Use Routes instead of Switch in v6 */}
+            <Routes>
                 <Route path="/oauth/callback" element={<OAuthCallback />} />
                 <Route path="/" element={<SignInWithGoogle />} />
             </Routes>
