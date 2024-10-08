@@ -74,7 +74,7 @@ const SignInWithGoogle: React.FC = () => {
   const handleKakaoLogin = () => {
     // Perform Kakao login
     window.Kakao.Auth.authorize({
-      redirectUri: 'https://dreamy-mermaid-eebe3d.netlify.app/oauth/callback',  // Replace with your app's redirect URI
+      redirectUri: 'https://dreamy-mermaid-eebe3d.netlify.app/callback',  // Replace with your app's redirect URI
     });
   };
   // Function to set up reCAPTCHA verifier
