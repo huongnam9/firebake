@@ -73,9 +73,13 @@ const SignInWithGoogle: React.FC = () => {
   };
   const handleKakaoLogin = () => {
     // Perform Kakao login
-    window.Kakao.Auth.authorize({
-      redirectUri: 'https://dreamy-mermaid-eebe3d.netlify.app/callback',  // Replace with your app's redirect URI
-      responseType: 'token',  // Request access_token directly
+    window.Kakao.Auth.login({
+      success: function (authObj: any) {
+        console.log("Access Token:", authObj, authObj.access_token);
+      },
+      fail: function (err: any) {
+        console.error("Kakao login failed", err);
+      }
     });
   };
 
