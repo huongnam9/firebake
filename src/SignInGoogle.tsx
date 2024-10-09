@@ -75,8 +75,11 @@ const SignInWithGoogle: React.FC = () => {
     // Perform Kakao login
     window.Kakao.Auth.authorize({
       redirectUri: 'https://dreamy-mermaid-eebe3d.netlify.app/callback',  // Replace with your app's redirect URI
+      responseType: 'token',  // Request access_token directly
     });
   };
+
+
   // Function to set up reCAPTCHA verifier
   useEffect(() => {
     addRecaptchaScript();
@@ -184,7 +187,9 @@ const SignInWithGoogle: React.FC = () => {
         <button onClick={signInWithGoogle}>Sign In with Google</button>
         <button onClick={signInWithApple}>Sign In with Apple</button>
         <button onClick={handleKakaoLogin}>Sign In with kakao talk</button>
+        {/*<button onClick={handleNaverLogin}>Sign In with naver</button>*/}
 
+        <div id="naverIdLogin"></div>
         <div>
           <h2>Firebase SMS Verification</h2>
           <form onSubmit={sendOTP}>
